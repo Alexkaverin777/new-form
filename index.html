@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Quantum AI</title>
+    <link rel="stylesheet" href="./form/css/form.css">
+    <link href="./img/logo.png" rel="shortcut icon" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,600;1,300;1,500;1,600&amp;family=Oswald:wght@300;400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link href="./css/style.css" rel="stylesheet" />
+    <script type="application/javascript">
+      function getCookie(name) {
+          var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+          return v ? v[2] : null;
+      }
+
+      function setCookie(name, value, days) {
+          var d = new Date;
+          d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * days);
+          document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
+      }
+
+      function getSubId() {
+          var params = new URLSearchParams(document.location.search.substr(1));
+          if (!'{subid}'.match('{')) {
+              return '{subid}';
+          }
+          var clientSubid = '<?php echo isset($client) ? $client->getSubid() : "" ?>';
+          if (!clientSubid.match('>')) {
+              return clientSubid;
+          }
+          if (params.get('_subid')) {
+              return params.get('_subid')
+          }
+          if (params.get('subid')) {
+              return params.get('subid')
+          }
+          if (getCookie('subid')) {
+              return getCookie('subid');
+          }
+      }
+
+      function getToken() {
+          var params = new URLSearchParams(document.location.search.substr(1));
+          if (!'{token}'.match('{')) {
+              return '{token}';
+          }
+          var clientToken = '<?php echo isset($client) ? $client->getToken() : "" ?>';
+          if (!clientToken.match('>')) {
+              return clientToken;
+          }
+          if (params.get('_token')) {
+              return params.get('_token')
+          }
+          if (params.get('token')) {
+              return params.get('token')
+          }
+          if (getCookie('token')) {
+              return getCookie('token');
+          }
+          return null;
+      }
+
+      function getPixel() {
+          var params = new URLSearchParams(document.location.search.substr(1));
+          if (!'{pixel}'.match('{')) {
+              return '{pixel}';
+          }
+          if (params.get('pixel')) {
+              return params.get('pixel')
+          }
+
+          if (getCookie('pixel')) {
+              return getCookie('pixel');
+          }
+
+          return null;
+      }
+
+      function getPixelGoogle() {
+          var params = new URLSearchParams(document.location.search.substr(1));
+          if (!'{pixelg}'.match('{')) {
+              return '{pixelg}';
+          }
+          if (params.get('pixelg')) {
+              return params.get('pixelg')
+          }
+
+          if (getCookie('pixelg')) {
+              return getCookie('pixelg');
+          }
+
+          return null;
+      }
+
+      function getIdGoogle() {
+          var params = new URLSearchParams(document.location.search.substr(1));
+          if (!'{googleId}'.match('{')) {
+              return '{googleId}';
+          }
+          if (params.get('googleId')) {
+              return params.get('googleId')
+          }
+
+          if (getCookie('googleId')) {
+              return getCookie('googleId');
+          }
+
+          return null;
+      }
+      function getSource() {
+          var params = new URLSearchParams(document.location.search.substr(1));
+          if (!'{source}'.match('{')) {
+              return '{source}';
+          }
+          if (params.get('source')) {
+              return params.get('source')
+          }
+
+          if (getCookie('source')) {
+              return getCookie('source');
+          }
+
+          return null;
+      }
+
+      if (typeof URLSearchParams === 'function') {
+          document.addEventListener("DOMContentLoaded", function (event) {
+              var params = new URLSearchParams(document.location.search.substr(1));
+              var subid = getSubId();
+              var token = getToken();
+              var pixel = getPixel();
+              var pixelg = getPixelGoogle();
+              var googleId = getIdGoogle();
+              var source = getSource();       
+                    
+
+              params.set('_token', token);
+              setCookie('pixel', pixel);
+              setCookie('token', token);
+              setCookie('subid', subid);
+              setCookie('pixelg', pixelg);
+              setCookie('googleId', googleId);
+              setCookie('source', source);
+
+          })
+      }
+  </script>
+
+  <!-- Facebook Pixel Code -->
+  <script type="application/javascript">
+      var date = new Date();
+      date.setTime(date.getTime() + (5 * 24 * 60 * 60 * 1000));
+      if (!'{pixel}'.match('{')) {
+          document.cookie = "pixel={pixel}; " + "expires=" + date.toUTCString() + "";
+      }
+
+      var matches = document.cookie.match(new RegExp("(?:^|; )" + 'pixel' + "=([^;]*)"));
+      var pixel = matches ? decodeURIComponent(matches[1]) : undefined;
+
+      ! function (f, b, e, v, n, t, s) {
+          if (f.fbq) return;
+          n = f.fbq = function () {
+              n.callMethod ?
+                  n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+          };
+          if (!f._fbq) f._fbq = n;
+          n.push = n;
+          n.loaded = !0;
+          n.version = '2.0';
+          n.queue = [];
+          t = b.createElement(e);
+          t.async = !0;
+          t.src = v;
+          s = b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t, s)
+      }(window, document, 'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', pixel);
+      fbq('track', 'PageView');
+  </script>
+
+
+  <!-- End Facebook Pixel Code -->
+  <!-- Global site tag (gtag.js)-->
+  <script async src="https://www.googletagmanager.com/gtag/js"></script>
+  <script>
+      if (!'{pixel}'.match('{')) {
+          document.cookie = "pixelg={pixelg}; " + "expires=" + date.toUTCString() + "";
+      }
+
+      var matchesG = document.cookie.match(new RegExp("(?:^|; )" + 'pixelg' + "=([^;]*)"));
+      var pixelG = matchesG ? decodeURIComponent(matchesG[1]) : undefined;
+
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', pixelG);
+  </script>
+  <!-- Global site tag (gtag.js) -->
+  </head>
+  <body>
+    <div class="main">
+      <section class="header-block">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-lg-3 offset-lg-1">
+              <div class="header-block__logo">
+                <img src="./img/logo.png" alt="Quantum AI" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-lg-7 offset-lg-1">
+              <div class="header-block__video-box position-relative w-100">
+                <video
+                  id="video"
+                  controls=""
+                  autoplay=""
+                  loop=""
+                  muted=""
+                  playsinline=""
+                  width="100%"
+                >
+                  <source
+                    src="https://player.vimeo.com/progressive_redirect/playback/711213836/rendition/720p/file.mp4?loc=external&amp;signature=2ad8fd0b42a7ca56f3ab592a27a3341ec46d8038f9c2c7d005afdb24c015523b"
+                    type="video/mp4"
+                  />
+                </video>
+              </div>
+            </div>
+            <div
+              class="col-12 col-lg-3 offset-lg-0 col-md-6 offset-md-3 offset-sm-0 p-0 mt-3 mt-lg-0"
+            >
+              <div class="form-box">
+                <h2 class="form-box__title">Register Below</h2>
+                <form class="form _main-form" id="main-form" method="post">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="users">
+        <div class="container-fluid p-0">
+          <div class="row p-0 no-gutters">
+            <div class="col-12 col-lg-6 col-xl-3 col-md-6 p-0">
+              <div class="users__box--first w-100 d-flex justify-content-center align-items-center">
+                <h2 class="users__title">OUR MEMBERS</h2>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6 col-xl-3 col-md-6 p-0">
+              <div class="users__box--second users__box w-100">
+                <div class="users__overlay">
+                  <p class="users__text text-left w-100 m-0">
+                    “At first I thought Quantum AI was going to be complicated but it’s been really
+                    straight forward. I just , opened my and let Quantum AI do the hard work. So far
+                    the my wildest expectations.”
+                  </p>
+                </div>
+                <div class="users__under-text w-100 text-center">Profit: <span>$$$$$</span></div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6 col-xl-3 col-md-6 p-0">
+              <div class="users__box--third users__box w-100">
+                <div class="users__overlay">
+                  <p class="users__text text-left w-100 m-0">
+                    "Dear Steven and Quantum AI Team, I’ve never seen such Huge Thank You Steven!"
+                  </p>
+                </div>
+                <div class="users__under-text w-100 text-center">Profit: <span>$$$$$</span></div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6 col-xl-3 col-md-6 p-0">
+              <div class="users__box--fourth users__box w-100">
+                <div class="users__overlay">
+                  <p class="users__text text-left w-100 m-0">
+                    "Quantum AI actually delivers! For many of my viewers that does mean a lot!!! I
+                    never told you this but my main profession is to find software that doesn’t work
+                    as a critical blogger… There are many of them… fortunately for you and your
+                    members I couldn’t find any reason not to recommend your high achieving Quantum
+                    AI software. Full marks!"
+                  </p>
+                </div>
+                <div class="users__under-text w-100 text-center">Profit: <span>$$$$$</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="row p-0 no-gutters">
+            <div class="col-12 col-lg-6 col-xl-3 col-md-6 p-0">
+              <div class="users__box--fifth users__box w-100">
+                <div class="users__overlay">
+                  <p class="users__text text-left w-100 m-0">
+                    "Your Quantum AI software had my life and the life of my family all in a matter
+                    of days. Thank you for this chance…"
+                    <span class="d-block">we really do appreciate it"</span>
+                  </p>
+                </div>
+                <div class="users__under-text w-100 text-center">Profit: <span>$$$$$</span></div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6 col-xl-3 col-md-6 p-0">
+              <div class="users__box--sixth users__box w-100">
+                <div class="users__overlay">
+                  <p class="users__text text-left w-100 m-0">
+                    "we really do appreciate it as a Quantum AI beta tester. Boy, was I wrong!
+                    Incredibly pleased.”
+                  </p>
+                </div>
+                <div class="users__under-text w-100 text-center">Profit: <span>$$$$$</span></div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6 col-xl-3 col-md-6 p-0">
+              <div class="users__box--seventh users__box w-100">
+                <div class="users__overlay">
+                  <p class="users__text text-left w-100 m-0">
+                    “I was simply amazed by the I generated with Quantum AI. It’s so easy to use and
+                    the results have been nothing short of OUTSTANDING! I recommend it highly,
+                    especially if you don’t know much about the because its 'click-click' simple.”
+                    Thank you so much Steven and the Team!
+                  </p>
+                </div>
+                <div class="users__under-text w-100 text-center">Profit: <span>$$$$$</span></div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-6 col-xl-3 col-md-6 p-0">
+              <div class="users__box--eighth users__box w-100">
+                <div class="users__overlay">
+                  <p class="users__text text-left w-100 m-0">
+                    "Quantum AI? Heck yeah! My kids thought I was pulling prank on them when I
+                    showed them how much I made within the first hour. That’s all I needed to
+                    continue"...
+                  </p>
+                </div>
+                <div class="users__under-text w-100 text-center">Profit: <span>$$$$$</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="delivers">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end">
+              <div class="delivers__img">
+                <img src="./img/App-1.jpg" alt="gajet" />
+                <div class="delivers__links d-flex justify-content-around">
+                  <a class="click delivers__under-img d-block toform">
+                    <img src="./img/apple1.png" alt="App Store" />
+                  </a>
+                  <a class="click delivers__uner-img d-block toform">
+                    <img src="./img/ggl1.png" alt="Google Play" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <h3 class="delivers__title">Quantum AI ADVANTAGES</h3>
+              <ul class="delivers__list">
+                <li class="delivers__item delivers__item--first">
+                  Perfect For 100% Beginners Or Pro's
+                </li>
+                <li class="delivers__item delivers__item--two">
+                  Game Changing 'Lead Pattern' Algorithm
+                </li>
+                <li class="delivers__item delivers__item--three">
+                  Generates for you only the best signals.
+                </li>
+                <li class="delivers__item delivers__item--fore">
+                  Runs On Any Device, Installs In Just 2 Minutes.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="clients">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-12 col-lg-5 offset-lg-1">
+              <h2 class="clients__title text-center text-lg-right">Clients Choose us because</h2>
+            </div>
+            <div class="col-12 col-lg-6">
+              <p class="clients__text">
+                Our Quantum AI Technology Is Constantly Monitoring The World’s Financial Markets,
+                24/7 Massive Data Crunching Mainframes Are Spotting Patterns In The World Markets.
+                This Allows Normal People Just Like You To Receive An Automated Slice Of The 7.8
+                Trillion Dollars That Are Traded Every Single Day!
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="lust-section">
+        <div class="container-fluid p-0 no-gutters">
+          <div class="row m-0 p-0">
+            <div class="col-12 col-lg-6 p-0">
+              <div class="lust-section__drugmakers-box d-flex flex-column flex-lg-row">
+                <div class="lust-section__img--first"></div>
+                <div class="lust-section__text-box d-flex flex-column">
+                  <p class="lust-section__yesterday-date mb-0">Yesterday 06:28 am</p>
+                  <strong class="lust-section__title d-block">Drugmakers Jump</strong>
+                  <p class="mb-0">
+                    Pharmaceutical stocks and bonds were among the day’s biggest winners today,
+                    Quantum AI pounces...
+                  </p>
+                </div>
+              </div>
+              <div class="lust-section__financial-box w-100">
+                <p class="lust-section__yesterday-date mb-0">Yesterday 09:45 pm</p>
+                <strong class="lust-section__title d-block"
+                  >Financial Uncertainty Creates Opportunity</strong
+                >
+                <p class="mb-0">
+                  All markets need volatility in order to suvive and it’s better when these massive
+                  price changes happen because the Prime Advantage software capitalizes on that to
+                  make huge windfall profits!!!
+                </p>
+              </div>
+            </div>
+            <div class="col-12 col-lg-3 p-0">
+              <div class="lust-section__third-box w-100 h-100"></div>
+            </div>
+            <div class="col-12 col-lg-3 p-0">
+              <div class="lust-section__nasdaq-box h-100 d-flex flex-column justify-content-center">
+                <p class="lust-section__date"><span class="today">20/06/2022</span> 05:28 am</p>
+                <strong class="lust-section__title d-block">How to Play the Nasdaq</strong>
+                <p class="mb-0">
+                  Prime Advantage analyzes Nasdaq 'Lead Patterns' after Kevin Kelly discusses the
+                  recent performance of stocks and his options strategy for the Nasdaq 100 Index.
+                  Prime Advantage Members make big bank (Source: Bloomburg Press)
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer class="footer text-center">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 text-left pt-2">
+              <p><b> IMPORTANT</b>: Earnings and Legal Disclaimers</p>
+            </div>
+            <div class="col-12 text-left">
+              <p>
+                Earnings and income representations made by Quantum AI, (collectively “This Website”
+                only used as aspirational examples of your earnings potential. The success of those
+                in the testimonials and other examples are exceptional results and therefore are not
+                intended as a guarantee that you or others will achieve the same results. Individual
+                results will vary and are entirely dependent on your use of Quantum AI.
+              </p>
+            </div>
+            <div class="col-12 text-left">
+              <p>
+                This Website is not responsible for your actions. You bear sole responsibility for
+                your actions and decisions when using products and services and therefore you should
+                always exercise caution and due diligence. You agree that this Website is not liable
+                to you in any way for the results of using our products and services. See our Terms
+                &amp; Conditions for our full disclaimer of liability and other restrictions.
+              </p>
+            </div>
+            <div class="col-12 text-left">
+              <p>
+                This Website may receive compensation for products and services they recommend to
+                you. If you do not want This Website to be compensated for a recommendation, then we
+                advise that you search online for a similar product through a non-affiliate link.
+              </p>
+            </div>
+            <div class="col-12 text-left">
+              <p>*Testimonials:</p>
+            </div>
+            <div class="col-12 text-left">
+              <p>
+                All characters, information and events depicted on This Website are entirely
+                fictitious. Any similarity to actual events or persons, living or dead, is purely
+                coincidental.
+              </p>
+            </div>
+            <div class="col-12 mt-3 mb-3">
+              <div class="footer__link-box d-flex flex-sm-row flex-column justify-content-center">
+                <a
+                  class="footer__link footer__link--blue"
+                  data-toggle="modal"
+                  data-target="#agreement"
+                  >Site Agreement</a
+                >
+                <a
+                  class="footer__link footer__link--blue"
+                  data-toggle="modal"
+                  data-target="#disclaimer"
+                  >Risk Disclaimer</a
+                >
+                <a
+                  class="footer__link footer__link--blue"
+                  data-toggle="modal"
+                  data-target="#privacy"
+                  >Privacy Policy.</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <div
+        class="modal fade"
+        id="agreement"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="agreement"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-center">WEBSITE TERMS OF USE IMPORTANT -- PLEASE READ</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body d-flex flex-column">
+              <p>
+                Thank you for visiting the website (the “Website”) on which you found the link to
+                these Terms Of Use (the “Website”). The Website is an Internet property of product.
+                (referred to collectively as “product,” “we” and “us”). You agree to be bound by
+                these product Website Terms of Use (“Terms of Use”), in their entirety, when you:
+                (a) access the Website; (b) register for a newsletter or subscribe to a mailing list
+                or request information by and through the Website (“Subscription Services”); (c)
+                register to participate in promotions, contests and/or sweepstakes offered by
+                product from time to time (each, a “Contest”); (d) join, or attempt to join, an
+                affiliate program or other membership organization featured on the Website
+                (“Membership Services”); and/or (e) order a product and/or service through the
+                Website (“Vendor Services, and together with the Subscription Services and
+                Membership Services, the “Services”). product Privacy Policy (“Privacy Policy”), the
+                Official Contest Rules applicable to each Contest, product Purchase Agreement(s)
+                (“Purchase Agreement”), product Membership Agreement(s) (“Membership Agreement”), as
+                well as any other operating rules, policies, price schedules and other supplemental
+                terms and conditions or documents that may be published from time to time, are
+                expressly incorporated herein by reference (collectively, the “Agreement”). Please
+                review the complete terms of the Agreement carefully. If you do not agree to the
+                Agreement in its entirety, you are not authorized to use the Services and/or Website
+                in any manner or form.
+              </p>
+              <p>
+                product SPECIFICALLY DENIES ACCESS TO THE WEBSITE AND/OR SERVICES BY ANY INDIVIDUAL
+                THAT IS COVERED BY THE CHILDREN’S ONLINE PRIVACY PROTECTION ACT OF 1998, AS AMENDED
+                (“COPPA”). product RESERVES THE RIGHT TO DENY ACCESS TO THE SERVICES AND/OR WEBSITE
+                TO ANY INDIVIDUAL, IN ITS SOLE AND EXCLUSIVE DISCRETION.
+              </p>
+              <h4>
+                <b> SCOPE AND MODIFICATION OF THE AGREEMENT </b>
+              </h4>
+              <p>
+                You agree to the terms and conditions outlined in the Agreement with respect to your
+                use of the Website. The Agreement constitutes the entire and only agreement between
+                you and product with respect to your use of the Website and supersedes all prior or
+                contemporaneous agreements, representations, warranties and/or understandings with
+                respect to the Website. We may amend the Agreement from time to time in our sole
+                discretion, without specific notice to you. The latest Agreement will be posted on
+                the Website, and you should review the Agreement prior to using the Website. By your
+                continued use of the Website and/or Services, you hereby agree to comply with all of
+                the terms and conditions contained within the Agreement effective at that time.
+                Therefore, you should regularly check this page for updates and/or changes.
+              </p>
+              <h4>
+                <b>REQUIREMENTS </b>
+              </h4>
+              <p>
+                The Website and Services are available only to individuals who can enter into
+                legally binding contracts under applicable law. The Website and Services are not
+                intended for use by individuals under the age of eighteen (18). If you are under the
+                age of eighteen (18), you do not have permission to use and/or access the Website
+                and/or Services.
+              </p>
+              <h4>
+                <b> DESCRIPTION OF THE SERVICES </b>
+              </h4>
+              <h5>
+                <b> Subscription Services </b>
+              </h5>
+              <p>
+                Subject to the terms and conditions of the Agreement, by registering on the Website
+                and receiving approval from product, you can obtain, or attempt to obtain, for a fee
+                or for no fee, the Subscription Services. The Subscription Services will provide you
+                with e-mail content, text and other materials (“Subscription Content”) relevant to
+                online marketing provided by product and its third party partners (“Third Party
+                Providers”). If you would like to discontinue receipt of the Subscription Content,
+                simply email us at Protected The Subscription Content contains comments, opinions
+                and/or other materials that are provided by product and Third Party Providers, and
+                should not necessarily be relied upon. Please use caution, common sense and safety
+                when using the Subscription Content and/or Subscription Services. You agree that
+                product shall have no obligations and incur no liabilities to you in connection with
+                any such Subscription Content. product does not represent or warrant that the
+                Subscription Content made available in connection with the Subscription Services is
+                accurate, complete or appropriate. You understand and agree that product is not
+                responsible or liable in any manner whatsoever for your inability to use the
+                Subscription Services and/or Subscription Content. You understand and agree that
+                product shall not be liable to you, any end-users or any third party, for any claim
+                in connection with any of the Subscription Services.
+              </p>
+              <h5>
+                <b> Membership Services </b>
+              </h5>
+              <p>
+                Subject to the terms and conditions of the Agreement and the Membership Agreement,
+                by registering on the Website, agreeing to the Membership Agreement and receiving
+                approval from product, you can obtain, or attempt to obtain, for a fee or for no
+                fee, a Membership in one of the various Membership programs that product offers. For
+                a copy of the Membership Agreement, please visit the website for the specific
+                Membership. Product Membership programs will enable you to access content, text and
+                other materials (“Member Content” and together with the Subscription Content, the
+                “Content”) provided by product and certain Third Party Providers, designed to assist
+                Members in their online marketing ventures. The Member Content contains comments,
+                opinions and other materials that are provided by product Third Party Providers, and
+                should not necessarily be relied upon. Please use caution, common sense and safety
+                when using the Member Content and/or Membership Services. You agree that product
+                shall have no obligations and incur no liabilities to you in connection with any
+                such Member Content. Product does not represent or warrant that the Member Content
+                made available in connection with the Membership Services is accurate, complete or
+                appropriate. You understand and agree that product is not responsible or liable in
+                any manner whatsoever for your inability to use the Membership Services and/or
+                Member Content. You understand and agree that product shall not be liable to you,
+                any end-users or any third party, for any claim in connection with any of the
+                Membership Services.
+              </p>
+              <h5>
+                <b> Vendor Services </b>
+              </h5>
+              <p>
+                By completing the applicable purchase order forms, you can obtain, or attempt to
+                obtain, certain products and/or services from the Website. The products and/or
+                services featured on the Website may contain descriptions that are provided directly
+                by the Third Party Provider manufacturers or distributors of such items. product
+                does not represent or warrant that the descriptions of such items are accurate or
+                complete. You understand and agree that product is not responsible or liable in any
+                manner whatsoever for your inability to obtain products and/or services from the
+                Website or for any dispute with the product’s seller, distributor and end-user
+                consumers. You understand and agree that product shall not be liable to you or any
+                third party for any claim in connection with any of the products and/or services
+                offered on the Website.
+              </p>
+              <h5>
+                <b>General</b>
+              </h5>
+              <p>
+                The information that you must supply in connection with registering for the Services
+                may include, without limitation, some or all of the following: (a) your full name;
+                (b) company name; (c) e-mail address; (d) mailing address (and billing address if
+                different); (e) home telephone number; (f) work telephone number; (g) telecopier
+                number; (h) credit card information; and/or (i) any other information requested on
+                the applicable registration form (“Service Registration Data”). You agree to provide
+                true, accurate, current and complete Service Registration Data. product has the
+                right to reject any Service Registration Data where it is determined, in the sole
+                and exclusive discretion of product, that: (i) you are in breach of any portion of
+                the Agreement; and/or (ii) the Service Registration Data that you provided is
+                incomplete, fraudulent, a duplicate or otherwise unacceptable. product may change
+                the Registration Data criteria at any time, in its sole discretion.
+              </p>
+              <p>
+                Unless explicitly stated otherwise, any future offer(s) made available to you on the
+                Website that augment(s) or otherwise enhance(s) the current features of the Website
+                shall be subject to the Agreement. You understand and agree that product is not
+                responsible or liable in any manner whatsoever for your inability to use and/or
+                qualify for the Services. You understand and agree that product shall not be liable
+                to you or any third party for any modification, suspension or discontinuation of any
+                Services or other product, service or promotion offered by product and/or any of its
+                Third Party Providers. If product terminates the Agreement and/or any Services for
+                any reason, product shall have no liability or responsibility to you. You understand
+                and agree that refusal to use the Website is your sole right and remedy with respect
+                to any dispute that you may have with product.
+              </p>
+              <h5>
+                <b> CONTESTS </b>
+              </h5>
+              <p>
+                From time-to-time, product offers promotional prizes and other awards via Contests.
+                By providing true and accurate information in connection with the applicable Contest
+                registration form, and agreeing to the Official Contest Rules applicable to each
+                Contest, you can enter for a chance to win the promotional prizes offered through
+                each Contest. To enter into the Contests featured on the Website, you must first
+                fully complete the applicable entry form. You agree to provide true, accurate,
+                current and complete Contest Registration Data. product has the right to reject any
+                Contest Registration Data where it is determined, in the sole and exclusive
+                discretion of product, that: (i) you are in breach of any portion of the Agreement;
+                and/or (ii) the Contest Registration Data that you provided is incomplete,
+                fraudulent, a duplicate or otherwise unacceptable. Product may change the
+                Registration Data criteria at any time, in its sole discretion.
+              </p>
+              <h5>
+                <b> LICENSE GRANT </b>
+              </h5>
+              <p>
+                As a user of the Website, you are granted a non-exclusive, non-transferable,
+                revocable and limited license to access and use the Website, Content and associated
+                material in accordance with the Agreement. product may terminate this license at any
+                time for any reason. You may use the Website and Content on one computer for your
+                own personal, non-commercial use. No part of the Website, Content, Contests and/or
+                Services may be reproduced in any form or incorporated into any information
+                retrieval system, electronic or mechanical. You may not use, copy, emulate, clone,
+                rent, lease, sell, modify, decompile, disassemble, reverse engineer or transfer the
+                Website, Content, Contests and/or Services or any portion thereof. product reserves
+                any rights not explicitly granted in the Agreement. You may not use any device,
+                software or routine to interfere or attempt to interfere with the proper working of
+                the Website. You may not take any action that imposes an unreasonable or
+                disproportionately large load on product’s infrastructure. Your right to use the
+                Website, Content, Contests and/or Services is not transferable.
+              </p>
+              <h5><b>PROPRIETARY RIGHTS</b></h5>
+              <p>
+                The content, organization, graphics, design, compilation, magnetic translation,
+                digital conversion, software, services and other matters related to the Website,
+                Content, Contests and Services are protected under applicable copyrights, trademarks
+                and other proprietary (including, but not limited to, intellectual property) rights.
+                The copying, redistribution, publication or sale by you of any part of the Website,
+                Content, Contests and/or Services is strictly prohibited. Systematic retrieval of
+                material from the Website, Content, Contests and/or Services by automated means or
+                any other form of scraping or data extraction in order to create or compile,
+                directly or indirectly, a collection, compilation, database or directory without
+                written permission from product is prohibited. You do not acquire ownership rights
+                to any content, document, software, services or other materials viewed at or through
+                the Website, Content, Contests and/or Services. The posting of information or
+                material on the Website, or by and through the Services, by product does not
+                constitute a waiver of any right in or to such information and/or materials. The
+                product name and logo, and all associated graphics, icons and service names, are
+                trademarks of product. All other trademarks appearing on the Website or by and
+                through the Services are the property of their respective owners. The use of any
+                trademark without the applicable owner’s express written consent is strictly
+                prohibited.
+              </p>
+              <h5>
+                <b>
+                  HYPERLINKING TO THE WEBSITE, CO-BRANDING, 'FRAMING' AND/OR REFERENCING THE WEBSITE
+                  PROHIBITED
+                </b>
+              </h5>
+              <p>
+                Unless expressly authorized by product, no one may hyperlink the Website, or
+                portions thereof (including, but not limited to, logotypes, trademarks, branding or
+                copyrighted material), to their website or web venue for any reason. Further,
+                ”framing” the Website and/or referencing the Uniform Resource Locator (”URL”) of the
+                Website in any commercial or non-commercial media without the prior, express,
+                written permission of product is strictly prohibited. You specifically agree to
+                cooperate with the Website to remove or cease, as applicable, any such content or
+                activity. You hereby acknowledge that you shall be liable for any and all damages
+                associated therewith.
+              </p>
+              <h5><b> EDITING, DELETING AND MODIFICATION </b></h5>
+              <p>
+                We reserve the right in our sole discretion to edit and/or delete any documents,
+                information or other content appearing on the Website.
+              </p>
+              <h5><b> DISCLAIMER </b></h5>
+              <p>
+                THE WEBSITE, SERVICES, CONTESTS, CONTENT, ANY THIRD PARTY PRODUCTS THAT YOU MAY
+                RECEIVE FROM ONE OF OUR THIRD PARTY PROVIDERS, AND/OR ANY OTHER PRODUCTS AND/OR
+                SERVICES THAT YOU MAY APPLY FOR THROUGH THE WEBSITE ARE PROVIDED TO YOU ON AN “AS
+                IS” AND “AS AVAILABLE” BASIS AND ALL WARRANTIES, EXPRESS AND IMPLIED, ARE DISCLAIMED
+                TO THE FULLEST EXTENT PERMISSIBLE PURSUANT TO APPLICABLE LAW (INCLUDING, BUT NOT
+                LIMITED TO, THE DISCLAIMER OF ANY WARRANTIES OF MERCHANTABILITY, NON-INFRINGEMENT OF
+                INTELLECTUAL PROPERTY AND/OR FITNESS FOR A PARTICULAR PURPOSE). IN PARTICULAR, BUT
+                NOT AS A LIMITATION THEREOF, product MAKES NO WARRANTY THAT: (A) THE WEBSITE,
+                SERVICES, CONTESTS, CONTENT, ANY THIRD PARTY PRODUCTS THAT YOU MAY RECEIVE FROM ONE
+                OF OUR THIRD PARTY PROVIDERS, AND/OR ANY OTHER PRODUCTS AND/OR SERVICES THAT YOU MAY
+                APPLY FOR THROUGH THE WEBSITE WILL MEET YOUR REQUIREMENTS; (B) THE WEBSITE,
+                SERVICES, CONTESTS, CONTENT, ANY THIRD PARTY PRODUCTS THAT YOU MAY RECEIVE FROM ONE
+                OF OUR THIRD PARTY PROVIDERS, AND/OR ANY OTHER PRODUCTS AND/OR SERVICES THAT YOU MAY
+                APPLY FOR THROUGH THE WEBSITE WILL BE UNINTERRUPTED, TIMELY, SECURE OR ERROR-FREE;
+                (C) YOU WILL QUALIFY FOR THE CONTESTS AND/OR SERVICES; OR (D) THE RESULTS THAT MAY
+                BE OBTAINED FROM THE USE OF THE WEBSITE, SERVICES, CONTESTS, CONTENT, ANY THIRD
+                PARTY PRODUCTS THAT YOU MAY RECEIVE FROM ONE OF OUR THIRD PARTY PROVIDERS, AND/OR
+                ANY OTHER PRODUCTS AND/OR SERVICES THAT YOU MAY APPLY FOR THROUGH THE WEBSITE WILL
+                BE ACCURATE OR RELIABLE. THE WEBSITE, SERVICES, CONTESTS, CONTENT, ANY THIRD PARTY
+                PRODUCTS THAT YOU MAY RECEIVE FROM ONE OF OUR THIRD PARTY PROVIDERS, AND/OR ANY
+                OTHER PRODUCTS AND/OR SERVICES THAT YOU MAY APPLY FOR THROUGH THE WEBSITE MAY
+                CONTAIN BUGS, ERRORS, PROBLEMS OR OTHER LIMITATIONS. WE WILL NOT BE LIABLE FOR THE
+                AVAILABILITY OF THE UNDERLYING INTERNET CONNECTION ASSOCIATED WITH THE WEBSITE. NO
+                ADVICE OR INFORMATION, WHETHER ORAL OR WRITTEN, OBTAINED BY YOU FROM product, ANY OF
+                ITS THIRD PARTY PROVIDERS OR OTHERWISE THROUGH OR FROM THE WEBSITE, SHALL CREATE ANY
+                WARRANTY NOT EXPRESSLY STATED IN THE AGREEMENT.
+              </p>
+              <h5><b> DISCLAIMER FOR HARM CAUSED BY DOWNLOADS </b></h5>
+              <p>
+                Visitors download information from the Website at their own risk. Product makes no
+                warranty that such downloads are free of corrupting computer codes including, but
+                not limited to, viruses and worms.
+              </p>
+              <h5><b> LIMITATION OF LIABILITY </b></h5>
+              <p>
+                YOU EXPRESSLY UNDERSTAND AND AGREE THAT product SHALL NOT BE LIABLE TO YOU OR ANY
+                THIRD PARTY FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL AND/OR
+                EXEMPLARY DAMAGES INCLUDING, BUT NOT LIMITED TO, DAMAGES FOR LOSS OF PROFITS,
+                GOODWILL, USE, DATA OR OTHER INTANGIBLE LOSSES (EVEN IF PRODUCT HAS BEEN ADVISED OF
+                THE POSSIBILITY OF SUCH DAMAGES), TO THE FULLEST EXTENT PERMISSIBLE BY LAW FOR: (A)
+                THE USE OR THE INABILITY TO USE THE WEBSITE, SERVICES, CONTESTS, CONTENT, ANY THIRD
+                PARTY PRODUCTS THAT YOU MAY RECEIVE FROM ONE OF OUR THIRD PARTY PROVIDERS, AND/OR
+                ANY OTHER PRODUCTS AND/OR SERVICES THAT YOU MAY APPLY FOR THROUGH THE WEBSITE; (B)
+                THE COST OF PROCUREMENT OF SUBSTITUTE GOODS AND SERVICES RESULTING FROM ANY GOODS,
+                DATA, INFORMATION AND/OR SERVICES PURCHASED OR OBTAINED FROM, OR TRANSACTIONS
+                ENTERED INTO THROUGH, THE WEBSITE; (C) THE FAILURE TO QUALIFY FOR THE CONTESTS,
+                SERVICES OR THIRD PARTY PRODUCTS FROM ANY OF OUR THIRD PARTY PROVIDERS, OR ANY
+                SUBSEQUENT DENIAL OF THIRD PARTY PRODUCTS FROM SAME; (D) THE UNAUTHORIZED ACCESS TO,
+                OR ALTERATION OF, YOUR REGISTRATION DATA; AND (E) ANY OTHER MATTER RELATING TO THE
+                INABILITY TO USE THE WEBSITE, SERVICES, CONTESTS, CONTENT, ANY THIRD PARTY PRODUCTS
+                THAT YOU MAY RECEIVE FROM ONE OF OUR THIRD PARTY PROVIDERS, AND/OR ANY OTHER
+                PRODUCTS AND/OR SERVICES THAT YOU MAY APPLY FOR THROUGH THE WEBSITE. THIS LIMITATION
+                APPLIES TO ALL CAUSES OF ACTION, IN THE AGGREGATE INCLUDING, BUT NOT LIMITED TO,
+                BREACH OF CONTRACT, BREACH OF WARRANTY, NEGLIGENCE, STRICT LIABILITY,
+                MISREPRESENTATIONS AND ANY AND ALL OTHER TORTS. YOU HEREBY RELEASE product AND ALL
+                OF product’S THIRD PARTY PROVIDERS FROM ANY AND ALL OBLIGATIONS, LIABILITIES AND
+                CLAIMS IN EXCESS OF THE LIMITATION STATED HEREIN. IF APPLICABLE LAW DOES NOT PERMIT
+                SUCH LIMITATION, THE MAXIMUM LIABILITY OF product TO YOU UNDER ANY AND ALL
+                CIRCUMSTANCES WILL BE FIVE HUNDRED DOLLARS ($500.00). THE NEGATION OF DAMAGES SET
+                FORTH ABOVE IS A FUNDAMENTAL ELEMENT OF THE BASIS OF THE BARGAIN BETWEEN YOU AND
+                product. THE INABILITY TO USE THE WEBSITE, SERVICES, CONTESTS, CONTENT, ANY THIRD
+                PARTY PRODUCTS THAT YOU MAY RECEIVE FROM ONE OF OUR THIRD PARTY PROVIDERS, AND/OR
+                ANY OTHER PRODUCTS AND/OR SERVICES THAT YOU MAY APPLY FOR THROUGH THE WEBSITE WOULD
+                NOT BE PROVIDED TO YOU WITHOUT SUCH LIMITATIONS.
+              </p>
+              <h5><b> INDEMNIFICATION </b></h5>
+              <p>
+                You agree to indemnify and hold product, each of their parents, subsidiaries and
+                affiliates, and each of their respective members, officers, directors, employees,
+                agents, co-branders and/or other partners, harmless from and against any and all
+                claims, expenses (including reasonable attorneys’ fees), damages, suits, costs,
+                demands and/or judgments whatsoever, made by any third party due to or arising out
+                of: (a) your use of the Website, Services, Content and/or entry into any Contest;
+                (b) your breach of the Agreement; and/or (c) your violation of any rights of another
+                individual and/or entity. The provisions of this paragraph are for the benefit of
+                product, each of their parents, subsidiaries and/or affiliates, and each of their
+                respective officers, directors, members, employees, agents, shareholders, licensors,
+                suppliers and/or attorneys. Each of these individuals and entities shall have the
+                right to assert and enforce these provisions directly against you on its own behalf.
+              </p>
+              <h5><b> THIRD PARTY WEBSITES </b></h5>
+              <p>
+                The Website may provide links to and/or refer you to other Internet websites and/or
+                resources including, but not limited to, those owned and operated by Third Party
+                Providers. Because product has no control over such third party websites and/or
+                resources, you hereby acknowledge and agree that product is not responsible for the
+                availability of such third party websites and/or resources. Furthermore, product
+                does not endorse, and is not responsible or liable for, any terms and conditions,
+                privacy policies, content, advertising, services, products and/or other materials at
+                or available from such third party websites or resources, or for any damages and/or
+                losses arising therefrom.
+              </p>
+              <h5><b> PRIVACY POLICY/VISITOR INFORMATION </b></h5>
+              <p>
+                Use of the Website, and all comments, feedback, information, Registration Data
+                and/or materials that you submit through or in association with the Website, is
+                subject to our Privacy Policy. We reserve the right to use all information regarding
+                your use of the Website, and any and all other personally identifiable information
+                provided by you, in accordance with the terms of our Privacy Policy.
+              </p>
+              <h5><b> LEGAL WARNING </b></h5>
+              <p>
+                Any attempt by any individual, whether or not a product customer, to damage,
+                destroy, tamper with, vandalize and/or otherwise interfere with the operation of the
+                Website, is a violation of criminal and civil law and product will diligently pursue
+                any and all remedies in this regard against any offending individual or entity to
+                the fullest extent permissible by law and in equity.
+              </p>
+              <h5><b> CHOICE OF LAW/VENUE </b></h5>
+              <p>
+                Any disputes arising out of or related to the Agreement shall be governed by and
+                construed in accordance with the laws (without regard to conflict of law
+                principles). Any award rendered shall be final and conclusive to the parties and a
+                judgment thereon may be entered in any court of competent jurisdiction. Nothing
+                herein shall be construed to preclude any party from seeking injunctive relief in
+                order to protect its rights pending an outcome in arbitration. To the extent
+                permitted by law, you agree that you will not bring, join or participate in any
+                class action lawsuit as to any claim, dispute or controversy that you may have
+                against product. and each of their legal representatives, affiliates, subsidiaries,
+                parents, agencies and their respective members, officers, directors, employees and
+                agents. You agree to the entry of injunctive relief to stop such a lawsuit or to
+                remove you as a participant in the suit. You agree to pay the attorney’s fees and
+                court costs that product in seeking such relief. The Agreement does not constitute a
+                waiver of any of your rights and remedies to pursue a claim individually and not as
+                a class action in binding arbitration as provided above. This provision preventing
+                you from bringing, joining or participating in class action lawsuits is an
+                independent agreement. Should any part of the Agreement be held invalid or
+                unenforceable, that portion shall be construed consistent with applicable law and
+                the remaining portions shall remain in full force and effect.
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="disclaimer"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="disclaimer"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-center">Disclaimer</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body d-flex flex-column">
+              <p>
+                EVERY EFFORT HAS BEEN MADE TO ACCURATELY REPRESENT THIS PRODUCT AND IT’S POTENTIAL.
+                EVEN THOUGH THIS INDUSTRY IS ONE OF THE FEW WHERE ONE CAN WRITE THEIR OWN CHECK IN
+                TERMS OF EARNINGS, THERE IS NO GUARANTEE THAT YOU WILL EARN ANY MONEY USING THE
+                TECHNIQUES AND IDEAS IN THESE MATERIALS. EXAMPLES IN THESE MATERIALS ARE NOT TO BE
+                INTERPRETED AS A PROMISE OR GUARANTEE OF EARNINGS. EARNING POTENTIAL IS ENTIRELY
+                DEPENDENT ON THE PERSON USING OUR PRODUCT, IDEAS AND TECHNIQUES. WE DO NOT PURPORT
+                THIS AS A 'GET RICH SCHEME.'ANY CLAIMS MADE OF ACTUAL EARNINGS OR EXAMPLES OF ACTUAL
+                RESULTS CAN BE VERIFIED UPON REQUEST. YOUR LEVEL OF SUCCESS IN ATTAINING THE RESULTS
+                CLAIMED IN OUR MATERIALS DEPENDS ON THE TIME YOU DEVOTE TO THE PROGRAM, IDEAS AND
+                TECHNIQUES MENTIONED, YOUR FINANCES, KNOWLEDGE AND VARIOUS SKILLS. SINCE THESE
+                FACTORS DIFFER ACCORDING TO INDIVIDUALS, WE CANNOT GUARANTEE YOUR SUCCESS OR INCOME
+                LEVEL. NOR ARE WE RESPONSIBLE FOR ANY OF YOUR ACTIONS.
+              </p>
+              <p>
+                MATERIALS IN OUR PRODUCT AND OUR WEBSITE MAY CONTAIN INFORMATION THAT INCLUDES OR IS
+                BASED UPON FORWARD-LOOKING STATEMENTS WITHIN THE MEANING OF THE SECURITIES
+                LITIGATION REFORM ACT OF 1995. FORWARD-LOOKING STATEMENTS GIVE OUR EXPECTATIONS OR
+                FORECASTS OF FUTURE EVENTS. YOU CAN IDENTIFY THESE STATEMENTS BY THE FACT THAT THEY
+                DO NOT RELATE STRICTLY TO HISTORICAL OR CURRENT FACTS. THEY USE WORDS SUCH AS
+                'ANTICIPATE,' 'ESTIMATE,' 'EXPECT,' 'PROJECT,' 'INTEND,' 'PLAN,' 'BELIEVE,' AND
+                OTHER WORDS AND TERMS OF SIMILAR MEANING IN CONNECTION WITH A DESCRIPTION OF
+                POTENTIAL EARNINGS OR FINANCIAL PERFORMANCE.
+              </p>
+              <p>
+                ANY AND ALL FORWARD LOOKING STATEMENTS HERE OR ON ANY OF OUR SALES MATERIAL ARE
+                INTENDED TO EXPRESS OUR OPINION OF EARNINGS POTENTIAL. MANY FACTORS WILL BE
+                IMPORTANT IN DETERMINING YOUR ACTUAL RESULTS AND NO GUARANTEES ARE MADE THAT YOU
+                WILL ACHIEVE RESULTS SIMILAR TO OURS OR ANYBODY ELSES, IN FACT NO GUARANTEES ARE
+                MADE THAT YOU WILL ACHIEVE ANY RESULTS FROM OUR IDEAS AND TECHNIQUES IN OUR
+                MATERIAL.
+              </p>
+              <p>
+                The author and publisher disclaim any warranties (express or implied),
+                merchantability, or fitness for any particular purpose. The author and publisher
+                shall in no event be held liable to any party for any direct, indirect, punitive,
+                special, incidental or other consequential damages arising directly or indirectly
+                from any use of this material, which is provided 'as is', and without warranties.
+              </p>
+              <p>
+                All links are for information purposes only and are not warranted for content,
+                accuracy or any other implied or explicit purpose.
+              </p>
+              <p>Privacy</p>
+              <p>
+                We maintain this page to demonstrate our firm commitment to the rights and privacy
+                of our users. This page explains how our site collects information from our members.
+              </p>
+              <p>
+                Free Newsletter and mailing list: we respect the privacy of our users, and as such
+                we will never share our database of email addresses and names with any third party.
+              </p>
+              <p>
+                Upon confirmation that you would like to join our newsletter, we will from time to
+                time send you free information relating to the products we market, general advice
+                related to online marketing, and promotional material for other products. Your email
+                will never be passed onto any third party. We will also never spam you. You may
+                unsubscribe from the mailing list at any time.
+              </p>
+              <p>
+                Personal Information we collect and how it is used: Service provider: when you
+                purchase product, the payment is processed by product, who will collect your name,
+                address, and credit card information so as to verify your order. They may not use
+                the information for any other purpose. Upon ordering, we also collect your name and
+                e-mail address. We use this information to follow-up on you as per the above
+                newsletter section.
+              </p>
+              <p>Further Reminder - Earnings Disclaimer:</p>
+              <p>
+                Every effort has been made to accurately represent this product and it's potential.
+                Even though this industry is one of the few where one can write their own check in
+                terms of earnings, there is no guarantee that you will earn any money using the
+                techniques and ideas in these materials.
+              </p>
+              <p>
+                Examples in these materials are not to be taken as a promise or guarantee of
+                earnings. Earning potential is entirely dependent on the person using our product,
+                ideas, techniques and the effort put forth. We do not purport this as a 'get rich
+                scheme', and nor should you view it as such.
+              </p>
+              <p>
+                Any and all forward looking statements here or on any of our sales material are
+                intended to express our opinion of earnings potential. Many factors will be
+                important in determining your actual results and no guarantees are made that you
+                will achieve results similar to ours or anybody else’s, in fact no guarantees are
+                made that you will achieve any results from our ideas and techniques.
+              </p>
+              <p>
+                Results vary, and as with any money-making opportunity, you could make more or less.
+                Success in ANY money-making opportunity is a result of hard work, time and a variety
+                of other factors. No express or implied guarantees of income are made by product.
+              </p>
+              <p>
+                Returns and refunds policy: as stated, if you purchase product, and you do not enjoy
+                the financial freedom that you expected, do not make as much from our methods as you
+                expected, or indeed for any reason, you may claim a refund for the product within 60
+                days of purchase. On a sidenote we do ask you to put the techniques into use before
+                requesting a refund, for both our benefit: however, our refund policy is
+                unconditional and this is a suggestion, not a requirement. We are aware that some
+                buyers will not achieve their personal goals despite our best efforts to the
+                contrary, and we stand by our refund policy as such. Please forward your receipt
+                number (given to you when you ordered) to us and we will action your refund request
+                as quickly as possible, typically within 24 hours. Revisions to This Policy: Our
+                company reserves the right to revise, amend, or modify this policy, our Terms Of
+                Service agreement, and our other policies and agreements at any time and in any
+                manner, by updating this posting.
+              </p>
+              <p>Copyright © <span class="cYear">2022</span> product | All Rights Reserved</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="privacy"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="privacy"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-center">Welcome to our Privacy Policy</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body d-flex flex-column">
+              <h4>Your privacy is critically important to us.</h4>
+              <p>
+                It is ’s policy to respect your privacy regarding any information we may collect
+                while operating our website. This Privacy Policy applies to (hereinafter, 'us',
+                'we', or ' '). We respect your privacy and are committed to protecting personally
+                identifiable information you may provide us through the Website. We have adopted
+                this privacy policy ('Privacy Policy') to explain what information may be collected
+                on our Website, how we use this information, and under what circumstances we may
+                disclose the information to third parties. This Privacy Policy applies only to
+                information we collect through the Website and does not apply to our collection of
+                information from other sources. This Privacy Policy, together with the Terms and
+                conditions posted on our Website, set forth the general rules and policies governing
+                your use of our Website. Depending on your activities when visiting our Website, you
+                may be required to agree to additional terms and conditions.
+              </p>
+              <ul>
+                <li>
+                  Website Visitors
+                  <p>
+                    Like most website operators, collects non-personally-identifying information of
+                    the sort that web browsers and servers typically make available, such as the
+                    browser type, language preference, referring site, and the date and time of each
+                    visitor request. ’s purpose in collecting non-personally identifying information
+                    is to better understand how ’s visitors use its website. From time to time, may
+                    release non-personally-identifying information in the aggregate, e.g., by
+                    publishing a report on trends in the usage of its website. also collects
+                    potentially personally-identifying information like Internet Protocol (IP)
+                    addresses for logged in users and for users leaving comments on http:// blog
+                    posts. only discloses logged in user and commenter IP addresses under the same
+                    circumstances that it uses and discloses personally-identifying information as
+                    described below.
+                  </p>
+                </li>
+                <li>
+                  Gathering of Personally-Identifying Information
+                  <p>
+                    Certain visitors to ’s websites choose to interact with in ways that require to
+                    gather personally-identifying information. The amount and type of information
+                    that gathers depends on the nature of the interaction. For example, we ask
+                    visitors who sign up for a blog at http:// to provide a username and email
+                    address.
+                  </p>
+                </li>
+                <li>
+                  Security
+                  <p>
+                    The security of your Personal Information is important to us, but remember that
+                    no method of transmission over the Internet, or method of electronic storage is
+                    100% secure. While we strive to use commercially acceptable means to protect
+                    your Personal Information, we cannot guarantee its absolute security.
+                  </p>
+                </li>
+                <li>
+                  Advertisements
+                  <p>
+                    Ads appearing on our website may be delivered to users by advertising partners,
+                    who may set cookies. These cookies allow the ad server to recognize your
+                    computer each time they send you an online advertisement to compile information
+                    about you or others who use your computer. This information allows ad networks
+                    to, among other things, deliver targeted advertisements that they believe will
+                    be of most interest to you. This Privacy Policy covers the use of cookies by and
+                    does not cover the use of cookies by any advertisers.
+                  </p>
+                </li>
+                <li>
+                  Links To External Sites
+                  <p>
+                    Our Service may contain links to external sites that are not operated by us. If
+                    you click on a third party link, you will be directed to that third party's
+                    site. We strongly advise you to review the Privacy Policy and terms and
+                    conditions of every site you visit. We have no control over, and assume no
+                    responsibility for the content, privacy policies or practices of any third party
+                    sites, products or services.
+                  </p>
+                </li>
+                <li>
+                  Aggregated Statistics
+                  <p>
+                    may collect statistics about the behavior of visitors to its website. may
+                    display this information publicly or provide it to others. However, does not
+                    disclose your personally-identifying information.
+                  </p>
+                </li>
+                <li>
+                  Affiliate Disclosure
+                  <p>
+                    This site uses affiliate links and does earn a commission from certain links.
+                    This does not affect your purchases or the price you may pay.
+                  </p>
+                </li>
+                <li>
+                  Cookies
+                  <p>
+                    To enrich and perfect your online experience, uses 'Cookies', similar
+                    technologies and services provided by others to display personalized content,
+                    appropriate advertising and store your preferences on your computer. A cookie is
+                    a string of information that a website stores on a visitor’s computer, and that
+                    the visitor’s browser provides to the website each time the visitor returns.
+                    uses cookies to help identify and track visitors, their usage of http:// , and
+                    their website access preferences. visitors who do not wish to have cookies
+                    placed on their computers should set their browsers to refuse cookies before
+                    using ’s websites, with the drawback that certain features of ’s websites may
+                    not function properly without the aid of cookies. By continuing to navigate our
+                    website without changing your cookie settings, you hereby acknowledge and agree
+                    to 's use of cookies.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                Privacy Policy Changes Although most changes are likely to be minor, may change its
+                Privacy Policy from time to time, and in ’s sole discretion. encourages visitors to
+                frequently check this page for any changes to its Privacy Policy. Your continued use
+                of this site after any change in this Privacy Policy will constitute your acceptance
+                of such change.
+              </p>
+              <ul>
+                <li>Privacy Policy</li>
+                <li>
+                  Credit &amp; Contact Information
+                  <p>
+                    This privacy policy was created at privacygen.com. If you have any questions
+                    about this Privacy Policy, please contact us via or phone.
+                  </p>
+                </li>
+              </ul>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./js/bundle.e00.js"></script>
+    <script type="module" src="./form/js/libs.js"></script>
+    <script type="module" src="./form/js/main-form.js?v=8"></script>
+  
+  
+    <script type="application/javascript">
+      function getSubId() {
+        if (!'{subid}'.match('{')) {
+          localStorage.setItem('subid', '{subid}')
+          return '{subid}';
+        }
+      }
+      getSubId()
+    </script>
+  </body>
+</html>
